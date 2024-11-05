@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form Post Example</title>
+</head>
+
+<body>
+    <h1>Form Post Example</h1>
+    <form id="myForm"> <button type="button" onclick="postForm()">Submit</button> </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function postForm() {
+            var CAMSURL = "https://ekycuat.camsonline.com/Home/Home";
+            var CLIENTURL = "https://de6c-43-254-177-106.ngrok-free.app/encrypt";
+            var vKycData = 'IKkbfqxE5B5lqvJKUwp/Bj9RVczrBKL2Cz91DwdeyX59BrMBzkOLa5WSUdRq378x4Fnu94Jq4MkZE3CVdhZ2vJBtVPy5lDcc4d/+0AOvZ8jaAQCtLiVMvrEXxB06yFeZa7x+hzdG7saxoWQs/4D4BkK6qxsiu4Sy9EuPb3pBWL8mEwmWo9Pi+tjcliKchcV4//7pj8jpW5M8rTp3e9+IheM03J/a4vnThZTMn8sg0TDLWV2Em/aQvzlLxWV5B71kA231qL7krCSsUGbgnW7DCMqeFapmHtmqd7x8gMnErqiwZ8VoeW5F0bbWvNDSAA+8nf0e8fQ43gvtL2viAGnFQw==|0XQWyCcbNVXPRyyzBnFBjTD54iNCVa335rpP7fdfdBeHhqicUtyNzW8g9w98riwUUgOHIXeHcLjbJItNw4f7C2Fdh7rg2HJ3tzWfK4RNDLGRfXc9WCtxBjFhiGXd+nQY|DVJGV9lgjatkJdaj/MKc0lmekAv0zRfWnBEyoX5yIqqkSuKSq0NGRi+cqS4yn2+TPxjZbYRoDiagrUvLP2ABlbftbb8tK4gwitxTwPsyWeo=';
+
+
+
+            var form = $('<form method="post" enctype="application/x-www-form-urlencoded" action="' + CAMSURL + '"></form>');
+            $(form).hide();
+            $(form).append($('<input type="hidden" name="url" value="' + CLIENTURL + '" />'));
+            $(form).append($('<input type="hidden" name="ekyctype" value="M" />'));
+            $(form).append($('<input type="hidden" name="plkyc_type" value="INVESTOR" />'));
+            $(form).append($('<input type="hidden" name="kyc_data" value="' + vKycData + '" />'));
+            $(form).append($('<input type="hidden" name="sess_id" value="abcd1234" />'));
+            $(form).appendTo("body").submit();
+        }
+    </script>
+</body>
+
+</html>
