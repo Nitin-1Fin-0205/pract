@@ -28,6 +28,7 @@ const rsaPrivateKey = fs.readFileSync('./KYC/keys/uat_private_key.pem', 'utf8');
 
 // Example KYC data
 const kycData = "DBKPG7469H|nitin.gupta@1finance.org.in|7039964057|Test|EKYC_1FINANCE|Fin1cams$1024|FPL";
+// const kycData = "BTHPA6429G|arulmurugank@sterlingsoftware.co.in|7402230427|Test|INV_PLKYCTEAM|Test$123|P|MFKYC3|SESS_ID";
 
 // Encrypt KYC data
 const encryptedKYC = encryptKYCData(kycData, rsaPublicKey);
@@ -45,26 +46,34 @@ console.log('\n\n---------------------------------------------------------------
 
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 
 app.post('/encrypt', (req, res) => {
     console.log('Encrypting KYC data...');
     const kycData = req.body;
     console.log('Received KYC Data:', kycData);
 
-    const rsaPrivateKey = fs.readFileSync('./KYC/keys/uat_private_key.pem', 'utf8');
 
     try {
         const decryptedKYC = decryptKYCData(encryptedKYC, rsaPrivateKey);
         console.log('Decrypted KYC:', decryptedKYC);
 
-        res.json({
-            status: 'success',
-            encryptedData: encryptedResult
-        });
+        // res.json({
+        //     status: 'success',
+        //     encryptedData: encryptedResult
+        // });
+        // res.status(200).json({
+        //     status: 'success',
+        //     encryptedData: encryptedResult
+        // });
+
     } catch (error) {
         console.error('Encryption Error:', error);
         res.status(500).json({
